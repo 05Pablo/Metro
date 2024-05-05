@@ -147,3 +147,26 @@ puede_viajar(Usuario, Y, Z) :-
 % Pregunta 3: Lucas necesita saber que parada de la linea roja hace transbordo con la linea amarilla.
 % Hacer ?- transbordo_en(roja, amarilla, P).
 % Respuesta P = sol.
+
+% ---------------------------------------------------------------------
+% EJERCICIO 3
+% ---------------------------------------------------------------------
+
+% Paradas con acceso a bus
+conecta_bus(cuatro_caminos)
+conecta_bus(moncloa)
+conecta_bus(atocha)
+conecta_bus(sol)
+
+% Una parada es intercambiador si en ella paran dos o mas rutas distintas y tiene
+% conexion con bus
+intercambiador(P) :-
+    parada(R1, P),
+    parada(R2, P),
+    R1 \= R2,
+    conecta_bus(P).
+ 
+% Nota: intercambiador(P) devuelve soluciones repetidas (una por cada
+% par de rutas). Para obtener la lista sin repetidos usar:
+%   ?- setof(P, intercambiador(P), L).
+% Respuesta L = [cuatro_caminos, sol].
